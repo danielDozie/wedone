@@ -4,3 +4,11 @@ export default (req, res) => {
   res.statusCode = 200
   res.json({ name: 'John Doe' })
 }
+
+
+function test(req, res){
+  res.statusCode = 200
+  res.json({ name: 'Daniel Dozie' })
+}
+
+export {test};
