@@ -51,11 +51,11 @@ export default function Home({todos}) {
       console.warn(err);
     })
     .then(res => {
-      const a = alert("Task added succesfully.");
-      const r = window.location.reload();
+      //const a = alert("Task added succesfully.");
+      //const r = window.location.reload();
       
-      setInitState({...initState, [a] : r});
-      //alert("Task added succesfully."); //this works too
+      //setInitState({...initState, [a] : r});
+      alert("Task added succesfully."); //this works too
      // window.location.reload();
     });
   }
@@ -108,7 +108,7 @@ export default function Home({todos}) {
         {todos.map(function(todo){
           return (
         <div className="task-content" key={todo._id}>
-        <p id="content" className="task-text"><span> <FontAwesomeIcon icon={faCheckCircle} /></span> {todo.content} <span style={icons}> <OverlayTrigger trigger="hover" placement="top" overlay={<Tooltip id="tooltip-top">Task added on {moment(todo.date_added).format("L LTS")}</Tooltip>}><a href="#" style={iconGreen} ><FontAwesomeIcon icon={faInfoCircle} /></a></OverlayTrigger><a style={iconBlue} href=""><FontAwesomeIcon icon={faEdit} /> </a> <a  style={iconRed} href="#" onClick={handleDelete}><FontAwesomeIcon icon={faTrashAlt} /></a></span></p>
+        <p id="content" className="task-text"><span> <FontAwesomeIcon icon={faCheckCircle} /></span> {todo.content} <span style={icons}> <OverlayTrigger trigger="hover focus" placement="top" overlay={<Tooltip id="tooltip-top">Task added on {moment(todo.date_added).format("L LTS")}</Tooltip>}><a href="#" style={iconGreen} ><FontAwesomeIcon icon={faInfoCircle} /></a></OverlayTrigger><a style={iconBlue} href=""><FontAwesomeIcon icon={faEdit} /> </a> <a  style={iconRed} href="#" onClick={handleDelete}><FontAwesomeIcon icon={faTrashAlt} /></a></span></p>
         </div>
           )
         })}
@@ -132,8 +132,10 @@ export async function getStaticProps() {
     .toArray()
   return {
     props: {
+      revalidate: 1,
       todos: JSON.parse(JSON.stringify(todo)),
     },
   };
 }
+
 
